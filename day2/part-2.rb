@@ -4,17 +4,12 @@ total = 0
 
 INPUT.each_line do |line|
 	row = line.split("\t").map(&:to_i)
-	high = 0
-	low = 99999
-	row.each do |number|
-		if number < low
-			low = number
-		end
-		if number > high
-			high = number
-		end
+	row.detect do |i|
+		divisor = row.detect {|j| i != j && i % j == 0}
+		if divisor != nil
+		  break (total += i/divisor)
+	  end
 	end
-	total += high - low
 end
 
 puts total
