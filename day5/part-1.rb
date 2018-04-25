@@ -1,13 +1,14 @@
 INPUT = File.read("input.txt")
+arr = INPUT.split("\n").map(&:to_i)
 
-total = 0
+counter = 0
+index = 0
 
-INPUT.each_line do |line|
-	row = line.split(" ")
-	temp = row.uniq
-	if row.length == temp.length
-		total += 1
-	end
+while index < arr.length
+  move = arr[index]
+	arr[index] += 1
+	index += move
+	counter += 1
 end
 
-puts total
+puts counter
